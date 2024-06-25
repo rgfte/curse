@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image12.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                <li><h2>{{ message }}</h2></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+    {% endwith %}
+    <form method="POST" class="form1" action="{{url_for('registr')}}">
+        <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" name="email" placeholder="Введите email">
+        <br>
+        <input type="password" name="password" placeholder="Введите пароль">
+        <br>
+        <input type="password" name="repeat_password" placeholder="Повторите пароль">
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+</div>
+
+{% endblock %}

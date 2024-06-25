@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='media/icons/shop-cart.png' ) }}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+
+        {% endblock %} Инвентарь
+    </title>
+</head>
+
+<body>
+
+
+
+    <header>
+        <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='media/icons/logo.png' ) }}"
+                alt="Инвентарь-главная" class="img-logo"></a>
+        <nav class="navbar">
+            <ul>
+                <a href="{{ url_for('catalog') }}">Каталог</a>
+                <a href="{{ url_for('cart') }}"><img src="{{ url_for('static', filename='media/icons/shop-cart.png' ) }}"
+                        alt="корзина" height="20px" width="20px"></a>
+                <a href="{{ url_for('profile') }}">Профиль</a>
+            </ul>
+        </nav>
+        {% block profile %}
+
+        {% endblock %}
+
+        {% block admin %}
+
+        {% endblock %}
+    </header>
+
+
+
+
+
+    <div class="block-body">
+        {% block body %}
+        <div class="block-container1">
+            {% block container1 %}
+
+            {% endblock %}
+        </div>
+        <div class="block-container2">
+            {% block container2 %}
+            <div class="block-container2_content">
+                {% block container2_content %}
+                <div class="block-container-content">
+
+                </div>
+                <div class="block-container-content">
+
+                </div>
+                <div class="block-container-content">
+
+                </div>
+                {% endblock %}
+            </div>
+            {% endblock %}
+        </div>
+        {% endblock %}
+    </div>
+
+
+
+
+    <footer>
+        <nav class="navbar">
+            <ul>
+                <a href="{{ url_for('catalog') }}">Каталог</a>
+                <a href="{{ url_for('cart') }}"><img src="{{ url_for('static', filename='media/icons/shop-cart.png' ) }}" alt="корзина"
+                        height="20px" width="20px"></a>
+                <a href="{{ url_for('profile') }}">Профиль</a>
+            </ul>
+        </nav>
+        <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='media/icons/logo.png' ) }}" alt="Инвентарь-главная"
+                class="img-logo-btm"></a>
+    </footer>
+
+
+
+</body>
+
+</html>

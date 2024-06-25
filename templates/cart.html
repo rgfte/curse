@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="block-container-cart">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flashes">
+            {% for message in messages %}
+            <h2>{{ message }}</h2>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <div class="block-menu-product-mini-cart">
+            {% for product in products %}
+                <div class="block-container-cart-content">
+                    <div class="block-container-cart-content-container">
+                        <img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}">
+                        {{ product.name }}
+                    </div>
+                    <!-- <p>{{ product.price }}</p> -->
+                    <p>Количество: {{ total_quantities.get(product.id, 0) }}</p>
+                    <p>Стоимость: {{ total_prices.get(product.id, 0) }}</p>
+                    <form action="{{ url_for('cart') }}" method="POST">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <div class="button-container">
+                            <button type="submit" name="operation" value="-" class="product-button">-</button>
+                            <button type="submit" name="operation" value="+" class="product-button">+</button>
+                        </div>
+                    </form>
+                    <a href="{{ url_for('cart_delete', product_id=product.id) }}" style="display: flex; justify-content: center;">
+                        <img src="{{ url_for('static', filename='media/icons/icons8-trash-32.png' ) }}" alt="корзина"
+                            height="32px" width="32px"></a>
+                    <br>
+                </div>
+            {% endfor %}
+            
+        </div>
+        <form action="{{ url_for('order') }}" method="POST">
+            {% for product in products %}
+                <input type="hidden" name="{{ product.id }}" value="{{ total_quantities.get(product.id, 0) }}">
+            {% endfor %}
+            <button type="submit" class="product-button">Оформить заказ</button>
+        </form>
+    </div>
+
+{% endblock %}

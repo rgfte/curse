@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>
+            <h2>{{ message }}</h2>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <div class="block-profile">
+        <h2>{{ user.email }}</h2>
+        <br>
+        <h1>Редактирование категории</h1>
+        <form action="{{ url_for('edit_category', id=category.id) }}" method="POST" class="form1">
+            <label for="name">Название категории</label>
+            <input type="text" name="name" id="name" value="{{ category.name }}">
+            <br>
+            <button type="submit">Сохранить</button>
+        </form>
+        <br>
+        <form action="{{ url_for('delete_category', id=category.id) }}" method="POST" class="form1">
+            <button type="submit" onclick="return confirm('Точно удалить категорию?')" style="height: 100%;">Удалить
+                категорию</button>
+        </form>
+        <a onclick="javascript:history.back(); return false;">Назад</a>
+    </div>
+</div>
+
+{% endblock %}

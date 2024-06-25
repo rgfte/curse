@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image10.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                <li><h2>{{ message }}</h2></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="block-title">
+            <h3>Сейчас популярны</h3>
+        </div>
+        <table class="block-container2_content">
+            <tr>
+                {% for product in products[:3] %}
+                    <td class="block-container-content">
+                        <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                        <h4>{{ product.name }}</h4>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+    <div class="block-menu" style="margin-top: 200px; margin-bottom: 150px; height: 1500px;">
+        <table class="block-container2_content">
+            <tr>
+                {% for product in products[3:6] %}
+                    <td class="block-container-content">
+                        <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                        <h4>{{ product.name }}</h4>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for product in products[6:9] %}
+                    <td class="block-container-content">
+                        <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                        <h4>{{ product.name }}</h4>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for product in products[9:12] %}
+                    <td class="block-container-content">
+                        <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                        <h4>{{ product.name }}</h4>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+    <div class="block-menu2"style="background-image: url({{ url_for('static', filename='media/img/image9.png') }}); background-attachment: fixed">
+        <div class="block-menu-content">
+            <h1>О нас</h1>
+        </div>
+        <div class="block-menu-content2">
+            <h1>
+                Инвентарь - это ваш надежный проводник в мире приключений на природе. Мы специализируемся на
+                предоставлении широкого ассортимента высококачественных вещей и аксессуаров для походов, путешествий и активного
+                отдыха.
+                <br>
+                <br>
+                inventory@mail.com
+            </h1>
+        </div>
+    </div>
+{% endblock %}

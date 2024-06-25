@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="block-menu-order" style="padding-top: 0; margin-bottom: 80px;">
+        <div class="block-title-order">
+            <h3>Оформление заказа</h3>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for category, message in messages %}
+            <li class="{{ category }}">
+                <h2>{{ message }}</h2>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+        <div class="order-products">
+            {% for product, quantity in products %}
+            <div class="block-container-cart-content">
+                <div class="block-container-cart-content-container">
+                    <input type="hidden" name="product_id_{{ product.id }}" value="{{ product.id }}">
+                    <input type="hidden" name="quantity_{{ product.id }}" value="{{ quantity }}">
+                    <img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}">
+                    {{ product.name }}
+                </div>
+                <!-- <p>{{ product.price }}</p> -->
+                <p>Количество: {{ total_quantities.get(product.id, 0) }}</p>
+                <p>Стоимость: {{ total_prices.get(product.id, 0) }}</p>
+            </div>
+            {% endfor %}
+            <h4>Общая стоимость: {{ total_price }}<h4>
+            <div class="form-container">
+                <form method="POST" class="form2" action="{{ url_for('order') }}" style="width: 80%;">
+                    <input type="email" value="{{ current_user.email }}"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" name="email" id="email"
+                        placeholder="Введите email">
+                    <br>
+                    <input type="text" name="surname" id="surname" placeholder="Введите фамилию" value="{{ current_user.surname if current_user.surname else 'Введите фамилию' }}">
+                    <br>
+                    <input type="text" name="name" id="name" placeholder="Введите имя" value="{{ current_user.name if current_user.name else 'Введите имя' }}">
+                    <br>
+                    <input type="text" name="addres" id="addres" placeholder="Введите адрес доставки">
+                    <br>
+                    <input type="tel" name="phone" placeholder="Введите номер телефона" minlength="11" maxlength="11" value="{{ current_user.phone if current_user.phone else 'Введите номер телефона' }}">
+                    <br>
+                    <input type="tel" name="card_number" pattern="[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}" minlength="16"
+                        maxlength="16" placeholder="0000-0000-0000-0000">
+                    <br>
+                    <div class="form1-block">
+                        <input type="tel" name="expiration_date" maxlength="4" minlength="4" placeholder="MONTH/YEAR">
+                        <br>
+                        <input type="tel" name="cvv" maxlength="3" minlength="3" placeholder="CVV">
+                    </div>
+                    <button type="submit" class="order-button" style="height: 100%;">Заказать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

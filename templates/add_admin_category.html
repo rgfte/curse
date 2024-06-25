@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+    <div class="block-profile">
+        <h2>{{ user.email }}</h2>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                <li><h2>{{ message }}</h2></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        <br>
+        <h1>Добавление товара</h1>
+        <form action="{{url_for('add_category')}}" method="POST" class="form1">
+            <label for="name">Название категории</label>
+            <input type="text" name="name" id="name">
+            <br>
+            <button type="submit">Подтведить</button>
+        </form>
+        <br>
+        <a onclick="javascript:history.back(); return false;">Назад</a>
+    </div>
+</div>
+
+{% endblock %}

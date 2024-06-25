@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="block-card">
+    <h1>Параметры поиска</h1>
+    <h3>Тип товара</h3>
+    <div class="block-card-checkbox-container">
+        <form action="{{ url_for('catalog') }}" method="GET">
+            {% for category in categories %}
+            <div class="block-card-checkbox-container-content">
+                <input type="checkbox" name="category" id="{{ category.id }}" value="{{ category.id }}">
+                <label for="{{ category.id }}">{{ category.name }}</label>
+            </div>
+            <br>
+            {% endfor %}
+            <button type="submit" class="catalog-button">Применить</button>
+        </form>
+    </div>
+</div>
+
+<div class="block-menu" style="margin-top: 50px; margin-bottom: 250px; height: 1500px;">
+    <table class="block-container2_content">
+        <tr>
+            {% for product in products[:3] %}
+                <td class="block-container-content">
+                    <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                    <h4>{{ product.name }}</h4>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for product in products[3:6] %}
+                <td class="block-container-content">
+                    <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                    <h4>{{ product.name }}</h4>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for product in products[6:9] %}
+                <td class="block-container-content">
+                    <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                    <h4>{{ product.name }}</h4>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for product in products[9:12] %}
+                <td class="block-container-content">
+                    <a href="{{url_for('product', name=product.name, id=product.id)}}"><img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}"></a>
+                    <h4>{{ product.name }}</h4>
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block profile %}
+
+<div class="block-profile" style="width: 100%;">
+    <h2>{{ user.email }}</h2>
+    <a href="{{ url_for('edit_profile') }}">Редактирование профиля</a>
+    <br>
+    <a href="{{ url_for('delete_profile', id=user.id) }}" onclick="return confirm('Точно удалить?')">Удаление профиля</a>
+    <br>
+    <a href="{{ url_for('logout') }}">Выход</a>
+</div>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flashes">
+        {% for message in messages %}
+        <h2>{{ message }}</h2>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <br>
+    <div class="block-title">
+        <h3>Заказы</h3>
+    </div>
+    <div class="block-profile-container">
+        {% for order in orders %}
+        <div class="block-profile-container-content">
+            <a href="{{ url_for('order_products', id=order.id) }}">Заказ №{{ order.id }}</a>
+            <h4>Дата создания: {{ order.dateCreation }}</h4>
+            <h4>Дата доставки: {{ order.dateShipping }}</h4>
+            <h4>Статус: {{ order.status }}</h4>
+            <h4>Город: {{ order.city }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

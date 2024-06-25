@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+    <div class="block-profile">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                <li><h2>{{ message }}</h2></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        <h2>{{ user.email }}</h2>
+        
+        <h2 style="margin-top: 0%; margin-bottom: 5%;">Редактирование товара {{ product.name }}</h2>
+        <form action="{{url_for('edit_product', id=product.id)}}" method="POST" class="form1">
+            <label for="id">Название товара</label>
+            <input type="text" name="name" id="name" value="{{ product.name }}">
+            
+            <label for="price">Цена товара (без указания валюты)</label>
+            <input type="number" name="price" id="price" value="{{ product.price }}">
+           
+            <label for="img">Фото товара (одно)</label>
+            <input type="file" name="img" id="img">
+
+            <select name="category_id" id="category" required style="width: 100%;">
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <button type="submit">Подтведить</button>
+        </form>
+        
+        <form action="{{ url_for('delete_product', id=product.id) }}" method="POST" class="form1">
+            <button type="submit" onclick="return confirm('Точно удалить?')" style="height: 100%;">Удалить товар</button>
+        </form>
+        
+        <a onclick="javascript:history.back(); return false;">Назад</a>
+    </div>
+</div>
+
+{% endblock %}

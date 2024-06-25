@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="order-product">
+    <h2>Заказ №{{ order.id }}</h2>
+    {% for order_product in order.order_products %}
+    <div class="block-container-cart-content">
+        <div class="block-container-cart-content-container">
+            <img src="{{ url_for('static', filename='media/img2/' + order_product.product.img) }}" alt="{{ order_product.product.name }}">
+            <p>{{ order_product.product.name }}</p>
+        </div>
+        <p>Цена: {{ order_product.product.price }} руб.</p>
+        <p>Количество: {{ order_product.quantity }}</p>
+        <p>Стоимость: {{ order_product.product.price * order_product.quantity }} руб.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

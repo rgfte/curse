@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+    <div class="block-profile">
+        <h2>{{ user.email }}</h2>
+        <a href="{{ url_for('admin_category') }}">Категории</a>
+        <br>
+        <a href="{{ url_for('admin_product') }}">Товары</a>
+        <br>
+        <a href="{{ url_for('logout') }}">Выход</a>
+    </div>
+</div>
+
+{% endblock %}

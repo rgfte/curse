@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="block-menu-product">
+        <div class="product-img">
+            <img src="{{ url_for('static', filename='media/img2/' + product.img) }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-desc">
+            <div class="block-title-product">
+                <h2>{{ product.name }}</h2>
+            </div>
+            <h2>
+                {{ product.price }} РУБ.
+            </h2>
+            <form action="{{ url_for('cart') }}" method="POST">
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <button type="submit" class="product-button">Добавить в корзину</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="block-menu-product-mini" style="height: 25vh;">
+        <div class="block-title-product-mini">
+            <h2>Рекомендуемые товары</h2>
+        </div>
+    </div>
+
+    <div class="block-menu-product-mini">
+        <table>
+            <tr>
+                {% for recommended_product in recommended_products %}
+                <td class="block-container-content">
+                    <a href="{{url_for('product', name=recommended_product.name, id=recommended_product.id)}}"><img
+                            src="{{ url_for('static', filename='media/img2/' + recommended_product.img) }}"
+                            alt="{{ recommended_product.name }}"></a>
+                    <h4>{{ recommended_product.name }}</h4>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}
