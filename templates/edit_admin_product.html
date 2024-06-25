@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat">
+<div class="block-menu"style="background-image: url({{ url_for('static', filename='media/img/image13.png') }}); background-attachment: fixed; background-repeat: no-repeat; height: 60vh;">
     <div class="block-profile">
         {% with messages = get_flashed_messages() %}
             {% if messages %}

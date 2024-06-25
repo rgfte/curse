@@ -199,7 +199,7 @@ def order():
             flash('Введите корректный CVV')
             return redirect(url_for('order'))
 
-        addres = request.form.get('city')
+        addres = request.form.get('addres')
         if not addres:
             flash('Введите адрес доставки')
             return redirect(url_for('order'))

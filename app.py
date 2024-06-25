@@ -4,7 +4,7 @@ import os
 from sqlalchemy import inspect
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://21061:mjpppv@web.edu:3306/21061_shop'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:ytpyfqrf123!@127.0.0.1:3306/shop'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'frueywtuiy4897848734gfgryg34g'
 
