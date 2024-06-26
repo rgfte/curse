@@ -54,7 +54,7 @@ class Product(db.Model):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(45), nullable = True)
-    email = db.Column(db.String(120), nullable = True, unique=True)
+    email = db.Column(db.String(50), nullable = True, unique=True)
     password = db.Column(db.String(200), nullable = True)
     phone = db.Column(db.String(12), nullable = True)
     surname = db.Column(db.String(45), nullable = True)
