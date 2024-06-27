@@ -58,7 +58,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(200), nullable = True)
     phone = db.Column(db.String(16), nullable = True)
     surname = db.Column(db.String(45), nullable = True)
-    role = db.Column(db.String(50), nullable=False, default='user')
+    role = db.Column(db.String(5), nullable=False, default='user')
 
 
 @manager.user_loader
