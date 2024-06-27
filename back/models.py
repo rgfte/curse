@@ -56,7 +56,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(45), nullable = True)
     email = db.Column(db.String(50), nullable = True, unique=True)
     password = db.Column(db.String(200), nullable = True)
-    phone = db.Column(db.String(12), nullable = True)
+    phone = db.Column(db.String(16), nullable = True)
     surname = db.Column(db.String(45), nullable = True)
     role = db.Column(db.String(50), nullable=False, default='user')
 

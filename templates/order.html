@@ -45,7 +45,7 @@
                     <br>
                     <input type="text" name="addres" id="addres" placeholder="Введите адрес доставки">
                     <br>
-                    <input type="tel" name="phone" placeholder="Введите номер телефона" minlength="11" maxlength="11" value="{{ current_user.phone if current_user.phone else 'Введите номер телефона' }}">
+                    <input type="tel" name="phone" placeholder="Введите номер телефона" minlength="11" maxlength="16" value="{{ current_user.phone if current_user.phone else 'Введите номер телефона' }}">
                     <br>
                     <input type="tel" name="card_number" pattern="[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}" minlength="16"
                         maxlength="16" placeholder="0000-0000-0000-0000">
